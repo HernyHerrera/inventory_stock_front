@@ -1,0 +1,59 @@
+<div class="dash-container">
+    <!--toolbar-->
+    <mat-toolbar color="primary">
+        <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+        <H1 id="app-name">Control de Inventario</H1>
+        <div id="login">
+            <ul >
+                
+                    <button mat-button [matMenuTriggerFor]="menu" >
+                        <mat-icon>person</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <mat-list-item>
+                            <a mat-button routerLink="/product"><mat-icon>login</mat-icon>Iniciar Sesión</a>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <a mat-button><mat-icon>logout</mat-icon>Cerrar Sesión</a>
+                        </mat-list-item>
+                        
+                        
+                    </mat-menu>
+            
+            </ul>
+        </div>
+    </mat-toolbar>
+    <!--sidenav-->
+    <mat-sidenav-container class="sidenav-container" style="background-color: white;">
+
+        <mat-sidenav #sidenav [mode]=" 'side'"
+            [fixedInViewport]="true" fixedTopGap="65" fixedBottomGap="70">
+
+            <mat-nav-list>
+                <!--perfil-->
+                <div class="perfil">
+                    <div class="header">
+                        <h2>Herny Herrera</h2>
+                        <h3>hernyh_11@hotmail.com</h3>
+                    </div>
+                </div>
+
+                <mat-divider></mat-divider>
+
+                <!--menu-->
+
+                    <a mat-list-item [routerLink]="item.route" *ngFor="let item of menuNav">
+                        <mat-icon class="icon">{{item.icon}}</mat-icon>
+                        <span class="icon-name">{{item.name}}</span>
+                    </a>
+            </mat-nav-list>
+
+        </mat-sidenav>
+            
+        <router-outlet></router-outlet>
+        
+
+    </mat-sidenav-container>
+   
+</div>
+
