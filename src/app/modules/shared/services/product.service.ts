@@ -31,4 +31,11 @@ export class ProductService {
       return this.http.post(endpoind, body);
 
     }
+    /**
+     * actualizar productos
+     */
+    updateProducts(body:any, id: any){
+      const endpoind = `${url_base}/products/${id}`;
+      return this.http.put(endpoind, body);
+    }
 }

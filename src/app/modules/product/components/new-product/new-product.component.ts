@@ -2,7 +2,7 @@ import { Component, Input, OnInit, forwardRef, inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 
 import { ProductService } from 'src/app/modules/shared/services/product.service';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ProductComponent } from '../product/product.component';
 
 
@@ -26,7 +26,9 @@ export class NewProductComponent implements OnInit{
 
   private productService = inject(ProductService);
   private dialog = inject(MatDialog);
-   private dialogRef = inject(MatDialogRef);
+  private dialogRef = inject(MatDialogRef);
+  public data = inject(MAT_DIALOG_DATA);
+  estadoForm: string = "Añadir";
   
   selectedValue!: string;
 
@@ -40,6 +42,11 @@ export class NewProductComponent implements OnInit{
   ngOnInit(): void {
     this.getCategory();
     this.validations();
+    console.log(this.data);
+    if(this.data != null){
+      this.updateForm(this.data)
+      this.estadoForm = "Actualizar"
+    }
     
   }
   getCategory(){
@@ -73,18 +80,39 @@ export class NewProductComponent implements OnInit{
       idUser: 1
 
     }
-    this.productService.saveProducts(data)
-    .subscribe(data =>{
-      console.log(data);
-      this.dialogRef.close(1)
-
-    }),(error: any)=>{
-      this.dialogRef.close(2)
+    if(this.data != null){
+      //actualizar producto
+      this.productService.updateProducts(data, this.data.id)
+        .subscribe((data: any) =>{
+          this.dialogRef.close(1);
+        }, (error:any) =>{
+          this.dialogRef.close(2);
+        })
+    }else{
+      //crear producto
+      this.productService.saveProducts(data)
+      .subscribe(data =>{
+        console.log(data);
+        this.dialogRef.close(1)
+  
+      }),(error: any)=>{
+        this.dialogRef.close(2)
+      }
     }
-
   }
   onCancel(){
-
+    this.dialogRef.close(3);
+  }
+  updateForm(data: any){
+    this.productForm = this.formB.group({
+      idCategory: [1, Validators.required],
+      code: [data.code, Validators.required],
+      name: [data.name, Validators.required],
+      stock: [data.stock, Validators.required],
+      description: [data.description, Validators.required],
+      price: [data.price, Validators.required],
+      
+    })
   }
   
  

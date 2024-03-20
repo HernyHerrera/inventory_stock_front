@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Agregar nuevo Producto</h2>
+<h2 mat-dialog-title>{{estadoForm}} nuevo Producto</h2>
 <mat-divider></mat-divider>
 <mat-dialog-content>
     <form [formGroup]="productForm">
@@ -11,7 +11,7 @@
                 <input matInput placeholder="Precio" currencyMask [options]="{ prefix: '€ ', thousands: '.', decimal: ',' } " formControlName="price"/>
             </mat-form-field>
             <mat-form-field class="input" >
-                <mat-select name="categorias"  [(ngModel)]="selectedValue" formControlName="idCategory">
+                <mat-select name="categorias"  (formContorlName)="selectedValue" formControlName="idCategory">
                     <mat-option *ngFor="let item of dataS" value="{{item.id}}">{{item.name}}</mat-option>  
                 </mat-select>
             </mat-form-field>

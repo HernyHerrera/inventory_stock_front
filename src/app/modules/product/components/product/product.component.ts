@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProductService } from 'src/app/modules/shared/services/product.service';
 import { NewProductComponent } from '../new-product/new-product.component';
@@ -23,10 +23,7 @@ export class ProductComponent implements OnInit{
 
   ngOnInit(): void {
     this.getProducts();
-    this.getCategory();
-    
-    
-    
+    this.getCategory(); 
   }
   columnsDisplay: string[] = [ 'code', 'nameProduct','category', 'description', 'price', 'stock', 'actions'];
   dataSource = new MatTableDataSource<Product>();
@@ -76,7 +73,7 @@ export class ProductComponent implements OnInit{
 
   showProduct(){
     const dialogRef = this.dialog.open(NewProductComponent  ,{
-      width: "550px"
+      width: "600px"
       
     });
     dialogRef.afterClosed().subscribe((result: any)=>{
@@ -90,14 +87,30 @@ export class ProductComponent implements OnInit{
       
     })
   }
+  edit(id:number, code:number, name:string, description: string, price: number, stock: number, category:any){
+    const dialogRef = this.dialog.open(NewProductComponent  ,{
+      data: {id:id, code:code, name: name, description: description, price: price, stock: stock, category: category}
+      
+    });
+    dialogRef.afterClosed().subscribe((result: any)=>{
+      if(result==1){
+        this.openSnack("Producto actualizado", "Exitosa");
+        this.getProducts();
+      }else if(result==2){
+        this.openSnack("Error al actualizar producto", "Error");
+
+      }
+      
+    })
+  }
   openSnack(message: string, action: string): MatSnackBarRef<SimpleSnackBar>{
     return this.snackBar.open(message, action,{
       duration: 3000
     })
 
   }
-
 }
+
 export interface Product{
   
   code: number;
