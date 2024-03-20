@@ -5,23 +5,31 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MaterialModule } from './material.module';
 import { RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgxCurrencyDirective } from 'ngx-currency';
 
 
 
 @NgModule({
   declarations: [
     SidenavComponent,
-    FooterComponent
+    FooterComponent,
+    
   ],
   exports: [
     SidenavComponent,
-    FooterComponent
+    FooterComponent,
+   
   ],
   imports: [
     CommonModule,
     RouterModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    NgxCurrencyDirective
+    
+    
   ]
 })
 export class SharedModule { }

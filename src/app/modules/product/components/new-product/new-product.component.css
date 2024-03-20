@@ -1,0 +1,14 @@
+.buttons{
+   margin-left: 33%;
+ }
+ .input{
+    width: 45%;
+    margin-left: 3%;
+ }
+ .textarea{
+    width: 93%;
+    margin-left: 3%;
+ }
+ #nombreProducto{
+   width: 93%;
+ }
