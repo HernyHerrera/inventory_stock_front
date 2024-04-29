@@ -9,9 +9,9 @@ export class SidenavComponent implements OnInit{
 
   menuNav =[
     {name: "Inicio", route: "home", icon:"home"},
-    {name: "Facturas", route: "home", icon:"receipt_long"},
+    {name: "Facturas", route: "invoice", icon:"receipt_long"},
     {name: "Productos", route: "product", icon:"production_quantity_limits"},
-    {name: "Stock", route: "home", icon:"inventory"}
+    {name: "Stock", route: "stock", icon:"inventory"}
   ]
 
   ngOnInit(): void {

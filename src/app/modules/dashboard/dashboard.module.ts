@@ -4,7 +4,8 @@ import { DashboardComponent } from './pages/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProductModule } from '../product/product.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InvoiceModule } from '../invoice/invoice.module';
+import { StockModule } from '../stock/stock.module';
 
 
 
@@ -18,9 +19,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     SharedModule,
-    
-    FormsModule,
-    ReactiveFormsModule
+    ProductModule,
+    InvoiceModule,
+    StockModule
   ]
 })
 export class DashboardModule { }

@@ -1,0 +1,68 @@
+<h2 mat-dialog-title>Añadir factura</h2>
+<mat-divider></mat-divider>
+<mat-dialog-content class="contentInvoice">
+    <form >
+        <div [formGroup]="invoiceForm" >
+            <h2>Datos</h2>
+            <mat-form-field class="input">
+                <input matInput placeholder="Número de factura" formControlName="invoiceNumber" type="number"/>
+                <mat-error *ngIf="this.invoiceForm.controls['invoiceNumber'].errors?.['required']">El N° de Factura es requerido</mat-error>
+            </mat-form-field>
+           
+            <mat-form-field class="input">
+                <input matInput [matDatepicker]="picker" placeholder="Fecha de emisión" formControlName="emissionDate" (ngModelChange)="verify()">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker ></mat-datepicker>
+                <mat-error *ngIf="this.invoiceForm.controls['emissionDate'].errors?.['required']">La fecha es requerida</mat-error>
+                <mat-error *ngIf="this.invoiceForm.controls['emissionDate'].errors?.['outRange']">La fecha no puede ser superior a la actual</mat-error>
+            </mat-form-field>
+            <mat-form-field class="input">
+                <input #nif matInput placeholder="NIF Proveedor" formControlName="provider" type="text" (keyup.enter)="getProvider(nif.value) "/>
+                <mat-error *ngIf="this.invoiceForm.controls['provider'].errors?.['required']">El NIF del proveedor es requerido</mat-error>
+                <mat-error *ngIf="this.invoiceForm.controls['provider'].errors?.['noExist']">NIF de proveedor no existe</mat-error>
+            </mat-form-field>
+            <mat-form-field class="input">
+                <input matInput placeholder="Proveedor" formControlName="providerName" type="text" value="{{providerN}}"/>
+            </mat-form-field>
+            <mat-divider class="dividerProducts"></mat-divider>
+            <h2>Productos</h2>
+            <ng-container formArrayName="products">
+                <ng-container *ngFor="let product of products.controls; let i=index;">
+                    <div [formGroup]="product">
+                        <mat-form-field class="inputProduct">
+                            <input #code matInput placeholder="Código de producto" formControlName="productCode"  (keyup.enter)="getProduct(code.value, i)" type="number"/>
+                            <mat-error *ngIf="this.product.controls['productCode'].errors?.required">El código de producto es requerido</mat-error>
+                            <mat-error *ngIf="this.product.controls['productCode'].errors?.noExist">Código de producto no existe</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="inputProduct">
+                            <input matInput placeholder="Nombre de producto" formControlName="productName" />
+                        </mat-form-field>
+                        <mat-form-field class="inputProduct">
+                            <input matInput placeholder="Cantidad del producto" formControlName="productCount" type="number"/>
+                            <mat-error *ngIf="this.product.controls['productCount'].errors?.required">La cantidad es requerida</mat-error>
+                            <mat-error *ngIf="this.product.controls['productCount'].errors?.min">La cantidad debe ser mayor a cero</mat-error>
+                        </mat-form-field>
+                        <button mat-icon-button class="delete" (dblclick)="deleteProduct(i)">
+                            <mat-icon class="delete-btn" color="accent" >
+                                delete</mat-icon>
+                        </button>
+                
+                     
+                    </div>
+                 </ng-container>
+            </ng-container>    
+                <button mat-flat-button (click)="addProduct()" type="button">Añadir producto</button>
+        </div>
+    </form>
+<mat-dialog-actions >
+    <div class="buttons">
+        <button mat-button color="primary" (click)="onSaveInvoice()" >
+            <mat-icon>save</mat-icon>Guardar
+        </button>
+        <button mat-button color="primary" (click)="onCancel()">
+            <mat-icon>cancel</mat-icon>Cancelar
+        </button>
+    </div>
+    
+</mat-dialog-actions>

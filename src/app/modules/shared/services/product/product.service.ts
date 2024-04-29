@@ -16,7 +16,16 @@ export class ProductService {
       return this.http.get(endpoind);
 
     }
-     /** obtener productos */
+    /** obtener producto por código */
+    getProductByCode(code:number){
+      const endpoind=`${url_base}/getProduct?code=${code}`
+      return this.http.get(endpoind);
+    }
+    getProduct(code:number, category:number){
+      const endpoind=`${url_base}/productslist?code=${code}&id=${category}`
+      return this.http.get(endpoind);
+    }
+     /** obtener categorias */
 
      getCategories(){
       const endpoind = `${url_base}/categories`;
@@ -36,6 +45,19 @@ export class ProductService {
      */
     updateProducts(body:any, id: any){
       const endpoind = `${url_base}/products/${id}`;
+      console.log(this.http.put(endpoind, body));
       return this.http.put(endpoind, body);
+    }
+    
+    updateQuantity(body:any){
+      const endpoind = `${url_base}/updateQuantity`;
+      return this.http.put<any>(endpoind, body);
+    }
+     /**
+     * eliminar producto
+     */
+     deleteProducts(id: any){
+      const endpoind = `${url_base}/products/${id}`;
+      return this.http.delete(endpoind);
     }
 }

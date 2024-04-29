@@ -1,0 +1,9 @@
+#confirm{
+    width: 300px;
+    align-items: center;
+    text-align: center;
+}
+button{
+    width: 35px;
+    margin-left: 30%;
+}

@@ -1,22 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductComponent } from './components/product/product.component';
+import { StockComponent } from './stock/stock.component';
 import { MaterialModule } from '../shared/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NewProductComponent } from './components/new-product/new-product.component';
-import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgxCurrencyDirective } from 'ngx-currency';
+import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
 @NgModule({
-  declarations: [
-    ProductComponent,
-    NewProductComponent
-  ],
+  declarations: [StockComponent],
   imports: [
     CommonModule,
     MaterialModule,
@@ -28,9 +24,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     NgxCurrencyDirective,
     MatSelectModule,
     MatPaginatorModule
-    
-
-    
   ]
 })
-export class ProductModule { }
+export class StockModule { }

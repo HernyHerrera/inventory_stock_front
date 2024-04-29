@@ -1,0 +1,10 @@
+<div id="confirm">
+    <h1 mat-dialog-title>Confirmar</h1>
+    <div mat-dialog-content>
+        <p>¿Desea borrar el producto?</p>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="noDelete()" color="primary">No</button>
+        <button mat-button (click)="delete()" cdkFocusInitial color="accent">Si</button>
+    </div>
+</div>

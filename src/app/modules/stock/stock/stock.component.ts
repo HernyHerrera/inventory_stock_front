@@ -1,21 +1,23 @@
-import { Component, Inject, Input, OnInit, ViewChild, inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
-import { ProductService } from 'src/app/modules/shared/services/product/product.service';
-import { NewProductComponent } from '../new-product/new-product.component';
+import { Component, ViewChild, inject } from '@angular/core';
 import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
-import { ConfirmComponent } from 'src/app/modules/shared/components/confirm/confirm.component';
+import { ConfirmComponent } from '../../shared/components/confirm/confirm.component';
+import { NewProductComponent } from '../../product/components/new-product/new-product.component';
+import { MatTableDataSource } from '@angular/material/table';
+import { AlertComponent } from '../../shared/components/alert/alert.component';
 import { MatPaginator } from '@angular/material/paginator';
-import { AlertComponent } from 'src/app/modules/shared/components/alert/alert.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductService } from '../../shared/services/product/product.service';
+
 
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  selector: 'app-stock',
+  templateUrl: './stock.component.html',
+  styleUrls: ['./stock.component.css']
 })
-export class ProductComponent implements OnInit{
-  
+export class StockComponent {
+
+
   private productService = inject(ProductService);
   public dialog = inject(MatDialog);
   private snackBar = inject(MatSnackBar);
@@ -27,7 +29,7 @@ export class ProductComponent implements OnInit{
     this.getProducts();
     this.getCategory(); 
   }
-  columnsDisplay: string[] = [ 'code', 'nameProduct','category', 'description', 'price', 'stock', 'actions'];
+  columnsDisplay: string[] = [ 'code', 'nameProduct','category', 'stock'];
   dataSource = new MatTableDataSource<Product>();
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -46,13 +48,11 @@ export class ProductComponent implements OnInit{
       category = "";
     }
     this.productService.getProduct(code, category)
-    .subscribe((data:any)=>{
-      console.log(data)
-      console.log(code, category)
-      this.productResponseData(data);
-    },(error)=>{
-      this.alerta("Sin resultados")
-    }) 
+      .subscribe((data:any)=>{
+        this.productResponseData(data);
+      },(error)=>{
+        this.alerta("Sin resultados")
+      })
   }
   alerta(message: string, title = 'Producto no encontrado', okCallback: () => void = () => { }) {
     const dialogRef = this.dialog.open(AlertComponent, {
@@ -66,6 +66,7 @@ export class ProductComponent implements OnInit{
       }
     });
   }
+
   // modela la respuesta
   productResponseData(resp:any){
     const dataProduct: Product[] = [];
@@ -163,5 +164,3 @@ export interface DialogData {
   message: string;
   title: string;
 }
-
-

@@ -10,13 +10,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { StockComponent } from './modules/stock/stock/stock.component';
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
     BrowserAnimationsModule,
     MatButtonModule,
     MatMenuModule,
-    DashboardModule
+    DashboardModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

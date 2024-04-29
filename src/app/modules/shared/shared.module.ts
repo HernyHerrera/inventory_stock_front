@@ -7,6 +7,9 @@ import { RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxCurrencyDirective } from 'ngx-currency';
+import { ConfirmComponent } from './components/confirm/confirm.component';
+import { AlertComponent } from './components/alert/alert.component';
+
 
 
 
@@ -14,6 +17,9 @@ import { NgxCurrencyDirective } from 'ngx-currency';
   declarations: [
     SidenavComponent,
     FooterComponent,
+    ConfirmComponent,
+    AlertComponent
+    
     
   ],
   exports: [

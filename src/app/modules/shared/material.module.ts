@@ -88,7 +88,8 @@ import {OverlayModule} from '@angular/cdk/overlay';
     MatTreeModule,
     OverlayModule,
     PortalModule,
-    ScrollingModule
+    ScrollingModule,
+    MatPaginatorModule
   ],
   imports: [
     A11yModule,
@@ -134,7 +135,8 @@ import {OverlayModule} from '@angular/cdk/overlay';
     MatTreeModule,
     OverlayModule,
     PortalModule,
-    ScrollingModule
+    ScrollingModule,
+    MatPaginatorModule
   ]
 })
 export class MaterialModule {}

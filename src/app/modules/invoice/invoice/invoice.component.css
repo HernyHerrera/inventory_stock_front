@@ -1,0 +1,25 @@
+div{
+    width: 100%;
+    display: inline-block;
+}h1{
+    margin-top: 30px;
+    text-align: center;
+    font-size: 45px;
+    font-weight:500;
+}
+mat-form-field{
+    width: 350px;;
+}
+ul li{
+    list-style: none;
+}
+.buscador{
+    margin-left: 20%;
+}
+.agregar{
+   
+    margin-left: 90%;
+}
+.buscar{
+    margin-left: 20px;
+}
