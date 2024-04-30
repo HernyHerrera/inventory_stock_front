@@ -34,7 +34,6 @@ export class InvoiceComponent implements OnInit{
       .subscribe((data:any) =>{
           this.invoiceResponseData(data);
       }, (error:any)=>{
-        alert("error al obtener facturas");
       })
   }
   search(number:any){

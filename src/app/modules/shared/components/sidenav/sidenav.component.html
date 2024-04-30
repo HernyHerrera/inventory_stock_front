@@ -11,10 +11,16 @@
                     </button>
                     <mat-menu #menu="matMenu">
                         <mat-list-item>
-                            <a mat-button routerLink="/product"><mat-icon>login</mat-icon>Iniciar Sesión</a>
+                            <button mat-menu-item (click)="login()">
+                                <mat-icon>login</mat-icon>
+                                Iniciar Sesión
+                            </button>
                         </mat-list-item>
-                        <mat-list-item>
-                            <a mat-button><mat-icon>logout</mat-icon>Cerrar Sesión</a>
+                        <mat-list-item (click)="logout()">
+                            <button mat-menu-item >
+                                <mat-icon >logout</mat-icon>
+                                Cerrar Sesión
+                            </button>
                         </mat-list-item>
                         
                         
@@ -33,8 +39,7 @@
                 <!--perfil-->
                 <div class="perfil">
                     <div class="header">
-                        <h2>Herny Herrera</h2>
-                        <h3>hernyh_11@hotmail.com</h3>
+                        <h2>{{username}}</h2>
                     </div>
                 </div>
 
