@@ -7,6 +7,7 @@ import { NewInvoiceComponent } from '../new-invoice/new-invoice.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { ConfirmComponent } from '../../shared/components/confirm/confirm.component';
 import { AlertComponent } from '../../shared/components/alert/alert.component';
+import { UsersService } from '../../shared/services/users.service';
 
 @Component({
   selector: 'app-invoice',
@@ -16,10 +17,7 @@ import { AlertComponent } from '../../shared/components/alert/alert.component';
 
 export class InvoiceComponent implements OnInit{
   
-  ngOnInit(): void {
-    this.getInvoices();
-    
-  }
+  
   public dialog = inject(MatDialog);
   private snackBar = inject(MatSnackBar);
   private invoiceService = inject(InvoiceService);
@@ -27,6 +25,15 @@ export class InvoiceComponent implements OnInit{
   dataSource = new MatTableDataSource<Invoice>();
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
+  private users = inject(UsersService);
+  isAdmin: boolean;
+  
+  ngOnInit(): void {
+    this.getInvoices();
+    this.isAdmin = this.users.isAdmin();
+    
+  }
+  
 
   // obtener facturas
   getInvoices(): void{

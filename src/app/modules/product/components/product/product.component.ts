@@ -7,6 +7,7 @@ import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material/s
 import { ConfirmComponent } from 'src/app/modules/shared/components/confirm/confirm.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { AlertComponent } from 'src/app/modules/shared/components/alert/alert.component';
+import { UsersService } from 'src/app/modules/shared/services/users.service';
 
 
 @Component({
@@ -21,11 +22,14 @@ export class ProductComponent implements OnInit{
   private snackBar = inject(MatSnackBar);
   selectedValue!: string;
   dataS: any;
+  private users = inject(UsersService);
+  isAdmin: boolean;
   
 
   ngOnInit(): void {
     this.getProducts();
-    this.getCategory(); 
+    this.getCategory();
+    this.isAdmin = this.users.isAdmin(); 
   }
   columnsDisplay: string[] = [ 'code', 'nameProduct','category', 'description', 'price', 'stock', 'actions'];
   dataSource = new MatTableDataSource<Product>();

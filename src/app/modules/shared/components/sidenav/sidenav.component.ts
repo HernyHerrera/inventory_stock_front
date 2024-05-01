@@ -7,7 +7,7 @@ import { KeycloakService } from 'keycloak-angular';
   styleUrls: ['./sidenav.component.css']
 })
 export class SidenavComponent implements OnInit{
-  private keycloackService = inject(KeycloakService)
+  private keycloackService = inject(KeycloakService);
   username: any;
 
 
@@ -19,7 +19,7 @@ export class SidenavComponent implements OnInit{
   ]
 
   ngOnInit(): void {
-      this.username = this.keycloackService.getUsername();
+      this.username = this.keycloackService.getUsername().toUpperCase();
       
   }
   login(){
