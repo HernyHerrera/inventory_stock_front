@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 const url_base = "http://localhost:8080/inventory";
+//conexion para la aplicación desplegada en GCP
+//const url_base="https://inventorycontrol-vjngxkkrzq-no.a.run.app/inventory"
 
 @Injectable({
   providedIn: 'root'

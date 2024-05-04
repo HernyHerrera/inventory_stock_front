@@ -51,8 +51,6 @@ export class ProductComponent implements OnInit{
     }
     this.productService.getProduct(code, category)
     .subscribe((data:any)=>{
-      console.log(data)
-      console.log(code, category)
       this.productResponseData(data);
     },(error)=>{
       this.alerta("Sin resultados")

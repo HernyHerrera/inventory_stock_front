@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 const url_base = "http://localhost:8080/inventory";
+//const url_base="https://inventorycontrol-vjngxkkrzq-no.a.run.app/inventory"
 
 @Injectable({
   providedIn: 'root'
